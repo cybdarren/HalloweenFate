@@ -73,7 +73,7 @@ void setup() {
   currentState = State.BOX_CLOSED;
   
   // setup the GPIO
-  GPIO.pinMode(4, GPIO.INPUT_PULLUP);
+  GPIO.pinMode(4, GPIO.INPUT);
 }
 
 void draw() {
@@ -94,7 +94,7 @@ void draw() {
   surface.render(offscreen);
   
   // test the GPIO trigger
-  if (GPIO.digitalRead(4) == GPIO.LOW) {
+  if (GPIO.digitalRead(4) == GPIO.HIGH) {
     startSequence = true;
   }
   
@@ -125,6 +125,7 @@ void draw() {
 State execBOX_CLOSED() {
   // check if any motion is seen on the PIR
   if (startSequence == true) {
+    println("CLOSED -> OPENING");
     // start the creaking sound
     servo_angle = 0.0;
     soundCreak.cue(0);
@@ -150,6 +151,8 @@ State execBOX_OPENING() {
     
     // start the movie
     playMovie();
+    delay(50);  // short delay to ensure movie starts
+    println("OPENING -> OPEN");
     return State.BOX_OPEN;
   }
   
@@ -170,6 +173,7 @@ State execBOX_OPEN() {
   servo_step = 180.0 / soundDuration; 
   moveStartTime = millis(); // start time  
   soundCreak.play();
+  println("OPEN -> CLOSING");
   return State.BOX_CLOSING;
 }
 
@@ -181,6 +185,7 @@ State execBOX_CLOSING() {
   if (servo_angle <= 0.0) {
     setServo(0, 0.0);
     startSequence = false;
+    println("CLOSING -> CLOSED");
     return State.BOX_CLOSED;
   }
   
