@@ -11,7 +11,7 @@ PGraphics offscreen;
 SoundFile soundWraith;
 SoundFile soundCreak;
 PCA9685 servos;
-float servo_angle = 0.0; // current angle for the servo
+float servo_angle = 180.0; // current angle for the servo
 float servo_step = 0.0; // angle step per millisecond for the given sound sample duration
 float moveStartTime = 0.0;
 
@@ -135,7 +135,7 @@ State execBOX_CLOSED() {
   if (startSequence == true) {
     println("CLOSED -> OPENING");
     // start the creaking sound
-    servo_angle = 0.0;
+    servo_angle = 180.0;
     soundCreak.cue(0);
     soundCreak.amp(0.6);
     float soundDuration = soundCreak.duration() * 1000.0; // convert to ms
@@ -152,10 +152,10 @@ State execBOX_CLOSED() {
 State execBOX_OPENING() {
   // get the current time into the servo move
   float currentTime = millis() - moveStartTime;
-  servo_angle = servo_step * currentTime;
+  servo_angle = 180.0 - (servo_step * currentTime);
 
-  if (servo_angle >= 180.0) {
-    setServo(0, 180.0);
+  if (servo_angle <= 0.0) {
+    setServo(0, 0.0);
     
     // start the movie
     playMovie();
@@ -174,7 +174,7 @@ State execBOX_OPEN() {
   }
       
   // start the creaking sound
-  servo_angle = 10.0;
+  servo_angle = 0.0;
   soundCreak.cue(0);
   soundCreak.amp(0.6);
   float soundDuration = soundCreak.duration() * 1000.0; // convert to ms
@@ -188,10 +188,10 @@ State execBOX_OPEN() {
 State execBOX_CLOSING() {
   // get the current time into the servo move
   float currentTime = millis() - moveStartTime;
-  servo_angle = 180.0 - (servo_step * currentTime);
+  servo_angle = servo_step * currentTime;
 
-  if (servo_angle <= 0.0) {
-    setServo(0, 0.0);
+  if (servo_angle >= 180.0) {
+    setServo(0, 180.0);
     println("CLOSING -> RETRIGGER_DELAY");
     // reuse the moveTimer for the delay
     moveStartTime = millis();
@@ -243,12 +243,12 @@ void keyReleased() {
   switch(key) {
   case 'u':
     // open the box
-    setServo(0, 180);
+    setServo(0, 0);
     break;
     
   case 'd':
     // close the box
-    setServo(0, 0);
+    setServo(0, 180);
     break;
     
   case 'm':
