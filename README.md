@@ -1,4 +1,4 @@
-#Halloween Fate
+# Halloween Fate
 
 A simple processing application for a statue. The idea is that a RPi 3B+ is inside a wooden box
  along with a pico projector. When a body passes nearby a PIR sensor is triggered. This causes the 
