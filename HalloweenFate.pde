@@ -17,13 +17,16 @@ float moveStartTime = 0.0;
 
 boolean startSequence = false;
 
+static float retriggerDelayMS = 10000.0; 
+
 // states for the box
 enum State {
   IDLE,
   BOX_CLOSED,
   BOX_OPENING,
   BOX_OPEN,
-  BOX_CLOSING
+  BOX_CLOSING,
+  BOX_RETRIGGER_DELAY
 }
 
 // current state
@@ -32,7 +35,8 @@ State currentState = State.BOX_CLOSED;
 void setup() {
   // Keystone will only work with P3D or OPENGL renderers, 
   // since it relies on texture mapping to deform
-  size(800, 600, P3D);
+  //size(854, 480, P3D);
+  fullScreen(P3D);
 
   // load the soundfile and the movie (for some reason audio from the movie doesn't work
   soundWraith = new SoundFile(this, "H4-1.wav");
@@ -74,6 +78,7 @@ void setup() {
   
   // setup the GPIO
   GPIO.pinMode(4, GPIO.INPUT);
+//  GPIO.attachInterrupt(4, this, "pinEvent", GPIO.RISING);
 }
 
 void draw() {
@@ -112,6 +117,9 @@ void draw() {
       break;
     case BOX_CLOSING:
       nextState = execBOX_CLOSING();
+      break;
+    case BOX_RETRIGGER_DELAY:
+      nextState = execBOX_RETRIGGER_DELAY();
       break;
     default:
       startSequence = false;
@@ -184,13 +192,27 @@ State execBOX_CLOSING() {
 
   if (servo_angle <= 0.0) {
     setServo(0, 0.0);
-    startSequence = false;
-    println("CLOSING -> CLOSED");
-    return State.BOX_CLOSED;
+    println("CLOSING -> RETRIGGER_DELAY");
+    // reuse the moveTimer for the delay
+    moveStartTime = millis();
+    return State.BOX_RETRIGGER_DELAY;
   }
   
   setServo(0, servo_angle);
   return State.BOX_CLOSING;
+}
+
+State execBOX_RETRIGGER_DELAY() {
+  // get the delay
+  float elapsedDelay = millis() - moveStartTime;
+  
+  if (elapsedDelay > retriggerDelayMS) {
+    startSequence = false;
+    println("RETRIGGER_DELAY -> BOX_CLOSED");
+    return State.BOX_CLOSED; 
+  }
+    
+  return State.BOX_RETRIGGER_DELAY;
 }
 
 void playMovie() {
@@ -210,6 +232,12 @@ void playMovie() {
 void setServo(int servo, float angle) {
   servos.write(servo, angle);
 }
+
+//void pinEvent(int pin)
+//{
+//  println("Detected motion");
+//  startSequence = true;
+//}
 
 void keyReleased() {
   switch(key) {
