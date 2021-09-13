@@ -15,8 +15,10 @@ At the end the box lid closes.
 And what is the 'Fate of Man'?   ---- Death of course.
 
 ## Video of the finished statue
-![Finished Statue]("./images/IMG_4308.jpg")
-[Finished Statue](https://github.com/cybdarren/HalloweenFate/images/Img_4307-1.m4v)
+
+
+[![Video of Statue](https://img.youtube.com/vi/gOVg6b7El3QE/0.jpg)](https://youtube.com/gOVg6b7El3QE)
+
 
 
 This is a video of the finished statue. The audio is actually much better in person. There is a large bass speaker in the plinth which can be turned up for the night.
