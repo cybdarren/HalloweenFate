@@ -1,8 +1,8 @@
-# Halloween Fate
+# Halloween Fate of Man
+<img src="./images/IMG_4310.jpg" alt="Statue" width="280"/>
 
 A simple processing application for a statue. The idea is that a RPi 3B+ is inside a wooden box
- along with a pico projector. When a body passes nearby a PIR sensor is triggered. This causes the 
-processing sketch to turn a servo attached to the box lid which opens it. At the same time a
+ along with a pico projector. When a body passes nearby a PIR sensor is triggered. This causes the processing sketch to turn a servo attached to the box lid which opens it. At the same time a
 creaking audio track is played.
 
 The box is 'held' by a hollow stone spook. The inside of the head/cowl is actually a projection
@@ -12,6 +12,15 @@ on to the inside of the cowl should look like a hollow face illusion.
 
 At the end the box lid closes.
 
+And what is the 'Fate of Man'?   ---- Death of course.
 
+## Video of the finished statue
+<video width="320" alt="Finished Statue" controls>
+    <source src="./images/Img 4307-1.m4v">
+</video>
+
+
+
+# Build Description
 
 
