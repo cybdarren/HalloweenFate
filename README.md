@@ -1,8 +1,8 @@
 # Halloween Fate of Man
 <img src="./images/IMG_4310.jpg" alt="Statue" width="280"/>
 
-A simple processing application for a statue. The idea is that a RPi 3B+ is inside a wooden box
- along with a pico projector. When a body passes nearby a PIR sensor is triggered. This causes the processing sketch to turn a servo attached to the box lid which opens it. At the same time a
+A simple Processing application for a statue. The idea is that a RPi 3B+ is inside a wooden box
+ along with a pico projector. When a body passes nearby a PIR sensor is triggered. This causes the Processing sketch to turn a servo attached to the box lid which opens it. At the same time a
 creaking audio track is played.
 
 The box is 'held' by a hollow stone spook. The inside of the head/cowl is actually a projection
@@ -26,7 +26,7 @@ This is a video of the finished statue. The audio is actually much better in per
 
 # Build Description
 ## Electronics and Software
-After having the initial about projecting into a hollow-face embedded inside a graveyard statue I had to work out how to physically build it.
+After having the initial idea about projecting into a hollow-face embedded inside a graveyard statue I had to work out how to physically build it.
 Before going into details of the build its worthwhile saying that I created a desktop mockup of all the active components. The software is written in the Processing language and runs on a Raspberry Pi 3B+. The Pi monitors a PIR detector and when it detects movement it triggers a servo conntected to a servo driver hat. Whilst the servo is running a creaking door sound effect plays as the box lid opens. 
 
 The video output from the RPi is fed to a pico projector. Even when displaying no video the projector still emits quite a lot of white light so the projected beam comes through the front of the box and a metal shutter connected to the box lid completely blanks the screen. This keeps the statue face dark until it is actually triggered.
