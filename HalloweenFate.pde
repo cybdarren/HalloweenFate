@@ -77,7 +77,7 @@ void setup() {
   currentState = State.BOX_CLOSED;
   
   // setup the GPIO
-  GPIO.pinMode(4, GPIO.INPUT);
+  GPIO.pinMode(4, GPIO.INPUT_PULLDOWN);
 //  GPIO.attachInterrupt(4, this, "pinEvent", GPIO.RISING);
 }
 
