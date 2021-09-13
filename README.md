@@ -17,7 +17,7 @@ And what is the 'Fate of Man'?   ---- Death of course.
 ## Video of the finished statue
 
 
-[![Video of Statue](https://img.youtube.com/vi/gOVg6b7El3QE/0.jpg)](https://youtube.com/gOVg6b7El3QE)
+[![Video of Statue](https://img.youtube.com/vi/gOVg6b7El3QE/0.jpg)](https://youtu.be/gOVg6b7El3Q)
 
 
 
