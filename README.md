@@ -1,5 +1,6 @@
 # Halloween Fate of Man
 <img src="./images/IMG_4310.jpg" alt="Statue" width="280"/>
+<img src="./images/IMG_4308.jpg" alt="Statue" width="280"/>
 
 A simple Processing application for a statue. The idea is that a RPi 3B+ is inside a wooden box
  along with a pico projector. When a body passes nearby a PIR sensor is triggered. This causes the Processing sketch to turn a servo attached to the box lid which opens it. At the same time a
