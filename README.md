@@ -19,6 +19,7 @@ And what is the 'Fate of Man'?   ---- Death of course.
     <source src="./images/Img 4307-1.m4v">
 </video>
 
+This is a video of the finished statue. The audio is actually much better in person. There is a large bass speaker in the plinth which can be turned up for the night.
 
 
 # Build Description
